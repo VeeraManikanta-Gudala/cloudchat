@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+Portia AWS Agent
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered FastAPI backend + React frontend that acts as a natural language AWS assistant.
+It uses Portia (planning agent framework) + Google Gemini LLM + custom AWS tools to perform tasks like creating, listing, and stopping EC2 instances — all via plain English queries.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔹 Natural Language AWS Control
+Just type:
 
-## Expanding the ESLint configuration
+"create an EC2 instance" → launches a t2.micro (minimal billing by default).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+"create a t3.medium instance in us-east-1" → launches a t3.medium.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+"list all instances" → lists all your EC2 instances.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+"stop all instances" → stops every running instance.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🔹 Default Cost-Saving
+If no type/region is provided, defaults to t2.micro in us-east-1.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🔹 Robust Output Formatting
+Responses are formatted into clean, readable text (via Gemini formatter) for easy copy-paste into terminals or docs.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🔹 Modern Tech Stack
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Backend: FastAPI + Portia + Google Gemini
+
+Frontend: React + TailwindCSS
+
+Infra: Custom AWS Tools integrated with Portia
+
+
+
+Example queries
+
+"create an ec2 instance"
+
+"createa s3 bucket named porita-s3-agent-new"
+list all the buckets
+
+delete the bucket <bucket name>
+
+"create a t3.medium instance in ap-south-1"
+
+"list all instances"
+
+"stop all instances"
