@@ -11,7 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
-
+./mcps/venv/
+./mcps/s3api/node_modules/
+./mcps/terminal/node_modules/
+./mcps/__pycache__/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
